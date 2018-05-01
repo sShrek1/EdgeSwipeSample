@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EdgeSwipeSample.Views.MasterMainPage"
+             xmlns:pages="clr-namespace:EdgeSwipeSample.Views"
+             xmlns:local="clr-namespace:EdgeSwipeSample;assembly=EdgeSwipeSample">
+    
+    <!-- the swipe menu page -->
+    <MasterDetailPage.Master>
+        <pages:MasterMainPageDetail/>
+    </MasterDetailPage.Master>
+
+    <MasterDetailPage.Detail>
+        <local:MainPage />
+    </MasterDetailPage.Detail>
+</MasterDetailPage>
