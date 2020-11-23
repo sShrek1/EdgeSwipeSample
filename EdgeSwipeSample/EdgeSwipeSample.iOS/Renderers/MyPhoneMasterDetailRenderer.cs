@@ -38,19 +38,23 @@ namespace EdgeSwipeSample.iOS.Renderers
             base.ViewDidLoad();
 
             // Attach the Edge Gesture.
-            var interactiveTransitionRecognizer = new UIScreenEdgePanGestureRecognizer();
-            interactiveTransitionRecognizer.AddTarget(() =>
-                InteractiveTransitionRecognizerAction(interactiveTransitionRecognizer));
-            interactiveTransitionRecognizer.Edges = UIRectEdge.Left;
-            View.AddGestureRecognizer(interactiveTransitionRecognizer);
+            var edgeSwipeOpenRecognizer = new UIScreenEdgePanGestureRecognizer();
+            edgeSwipeOpenRecognizer.AddTarget(() => InteractiveTransitionRecognizerAction(edgeSwipeOpenRecognizer, true));
+            edgeSwipeOpenRecognizer.Edges = UIRectEdge.Left;
+            View.AddGestureRecognizer(edgeSwipeOpenRecognizer);
+
+            var edgeSwipeCloseRecognizer = new UIScreenEdgePanGestureRecognizer();
+            edgeSwipeCloseRecognizer.AddTarget(() => InteractiveTransitionRecognizerAction(edgeSwipeCloseRecognizer, false));
+            edgeSwipeCloseRecognizer.Edges = UIRectEdge.Right;
+            View.AddGestureRecognizer(edgeSwipeCloseRecognizer);
         }
 
-        void InteractiveTransitionRecognizerAction(UIScreenEdgePanGestureRecognizer sender)
+        void InteractiveTransitionRecognizerAction(UIScreenEdgePanGestureRecognizer sender, bool presentedValue)
         {
             // If we get swipe from the left edge, we show the menu.
 
             if (sender.State == UIGestureRecognizerState.Began)
-                SetPresentedValue(true);
+                SetPresentedValue(presentedValue);
         }
 
 
